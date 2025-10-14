@@ -59,12 +59,26 @@ This project — **Smart City Traffic Management System** — provides a **datab
 ```text
 Smart-City-Traffic-Management-System/
 │
-├── sql/
-│   ├── create_tables.sql
-│   ├── insert_data.sql
-│   ├── triggers.sql
-│   └── reports.sql
+sql/
+├── tables/
+│   ├── intersection.sql         # Table schema for intersections
+│   ├── traffic_signal.sql       # Table schema for traffic signals
+│   ├── congestion_report.sql    # Table schema for congestion reports
+│   └── emergency_vehicle.sql    # Table schema for emergency vehicles
 │
+├── events/
+│   └── traffic_events.sql       # Scheduled MySQL events for real-time simulation:
+│       # - Rotate traffic signals (one green at a time, others red)
+│       # - Update vehicle counts dynamically based on signal color
+│       # - Generate congestion reports when vehicle_count exceeds thresholds
+│       # - Periodic reset of vehicle counts to prevent overflow
+│
+├── triggers/
+│   └── triggers.sql             # Optional triggers (if used)
+│
+└── reports/
+    └── reports.sql              # Queries for congestion monitoring and traffic analysis
+
 ├── python/                 # (optional)
 │   ├── main.py
 │   ├── db_connection.py
